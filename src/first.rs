@@ -1,14 +1,15 @@
 
 
-#[derive(Debug)]
-pub enum List<T> {
-    Nil,
-    Cons(T, Box<List<T>>),
+struct Node {
+    elem: i32,
+    next: List,
 }
 
+enum Link {
+    Empty,
+    More(Box<Node>),
+}
 
-impl<T> List<T> {
-    pub fn new() -> List<T> {
-        unimplemented!();
-    }
+pub struct List {
+    head: Link,
 }
