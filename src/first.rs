@@ -13,3 +13,10 @@ enum Link {
 pub struct List {
     head: Link,
 }
+
+
+impl List {
+    pub fn new() -> Self {
+        List {head: Link::Empty}
+    }
+}
