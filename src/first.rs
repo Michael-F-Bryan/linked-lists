@@ -46,3 +46,40 @@ impl List {
         }
     }
 }
+
+
+#[cfg(test)]
+mod test {
+    use super::*;
+
+    #[test]
+    fn basics() {
+        let mut my_list = List::new();
+
+        // Check that an empty list behaves right
+        assert_eq!(my_list.pop(), None);
+
+        // Add some data
+        my_list.push(1);
+        my_list.push(2);
+        my_list.push(3);
+
+        // Check normal removal
+        assert_eq!(my_list.pop(), Some(3));
+        assert_eq!(my_list.pop(), Some(2));
+
+        // Add on some more stuff to make sure it's not corrupted
+        my_list.push(4);
+        my_list.push(5);
+
+        // Then remove them
+        assert_eq!(my_list.pop(), Some(5));
+        assert_eq!(my_list.pop(), Some(4));
+
+        // And check for exhaustion
+        assert_eq!(my_list.pop(), Some(1));
+        assert_eq!(my_list.pop(), None);
+
+    }
+
+}
