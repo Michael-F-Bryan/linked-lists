@@ -48,6 +48,17 @@ impl List {
 }
 
 
+impl Drop for List {
+    fn drop(&mut self) {
+        let mut current_link = replace(&mut self.head, Link::Empty);
+
+        while let Link::More(mut boxed_node) = current_link {
+            current_link = replace(&mut boxed_node.next, Link::Empty);
+        }
+    }
+}
+
+
 #[cfg(test)]
 mod test {
     use super::*;
