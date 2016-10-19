@@ -1,3 +1,6 @@
+#![allow(missing_docs)]
+
+#[derive(Debug)]
 pub struct List<T> {
     head: Link<T>,
 }
@@ -7,6 +10,7 @@ type Link<T> = Option<Box<Node<T>>>;
 
 /// A generic node that will hold our value plus a pointer
 /// to the next node in the chain
+#[derive(Debug)]
 struct Node<T> {
     elem: T,
     next: Link<T>,
@@ -97,7 +101,9 @@ mod test {
         let mut list = List::new();
         assert_eq!(list.peek(), None);
         assert_eq!(list.peek_mut(), None);
-        list.push(1); list.push(2); list.push(3);
+        list.push(1);
+        list.push(2);
+        list.push(3);
 
         assert_eq!(list.peek(), Some(&3));
         assert_eq!(list.peek_mut(), Some(&mut 3));

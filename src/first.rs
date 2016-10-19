@@ -1,16 +1,20 @@
+#![allow(missing_docs)]
 use std::mem::replace;
 
 
+#[derive(Debug)]
 struct Node {
     elem: i32,
     next: Link,
 }
 
+#[derive(Debug)]
 enum Link {
     Empty,
     More(Box<Node>),
 }
 
+#[derive(Debug)]
 pub struct List {
     head: Link,
 }
@@ -19,12 +23,12 @@ pub struct List {
 impl List {
     /// Create an empty list
     pub fn new() -> Self {
-        List {head: Link::Empty}
+        List { head: Link::Empty }
     }
 
     /// Pust a value onto the start of the list
     pub fn push(&mut self, value: i32) {
-        let new_node = Node{
+        let new_node = Node {
             elem: value,
             next: replace(&mut self.head, Link::Empty),
         };
@@ -38,11 +42,9 @@ impl List {
                 let node = *boxed_node;
                 self.head = node.next;
                 Some(node.elem)
-            },
+            }
 
-            Link::Empty => {
-                None
-            },
+            Link::Empty => None,
         }
     }
 }
